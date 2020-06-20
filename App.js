@@ -6,8 +6,10 @@
  * @flow
  */
 
+'use strict';
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {createStackNavigator, createAppContainer, StackActions, NavigationActions} from 'react-navigation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu' + 'ios ne',
@@ -16,16 +18,44 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+class HomeScreen extends React.Component<{}> {
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+    return(
+      <button title="Go to Jane's profile"
+      />
     );
+  }
+}
+
+class ProfileScreen extends React.Component<{}> {
+
+  render() {
+    return(
+      <button title="Go to Jane's profile"
+      />
+    );
+  }
+}
+
+const MainNavigator = createStackNavigator({
+  Home: {screen: HomeScreen},
+  Profile: {screen: ProfileScreen},
+},
+{
+  initialRouteName: 'Home',
+}
+);
+
+const AppContainer = createAppContainer(MainNavigator);
+
+type Props = {};
+export default class App extends Component<{}> {
+  render() {
+    return <button title="Go to Jane's profile"
+    onClick ={() => {}}
+    ></button>
+    // return <Text style={styles.descriptions}>Search for houses to buy!</Text>;
   }
 }
 
@@ -40,6 +70,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  descriptions: {
+    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 65,
   },
   instructions: {
     textAlign: 'center',
